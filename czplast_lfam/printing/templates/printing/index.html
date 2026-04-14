@@ -42,7 +42,7 @@
             {% for project in projects %}
                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                     <a href="{% url 'project' project.id %}">
-                        <img class="d-block w-100 mh-50" src="{{ project.image.url }}" alt="Image of {{ project.name }}">
+                        <img class="d-block w-100 mh-50 rounded" src="{{ project.image.url }}" alt="Image of {{ project.name }}">
                     </a>
                     <div class="carousel-caption bg-dark bg-opacity-50 rounded">
                         <h5 class="text-light">{{ project.name }}</h5>
