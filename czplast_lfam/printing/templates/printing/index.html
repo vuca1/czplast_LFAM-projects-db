@@ -1,5 +1,81 @@
 {% extends "printing/layout.html" %}
 
 {% block body %}
-    <h2>CZ PLAST | Large Format Additive Manufacturing</h2>
+    
+    <!-- introduction -->
+    <div class="text-center">
+        <h1 class="display-4">CZ PLAST</h1>
+        <p class="lead">Large Format Additive Manufacturing</p>
+    </div>
+
+    <!-- description -->
+    <div class="text-center">
+        <hr>
+        <h5>First paragraphe</h5>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+            Integer vulputate sem a nibh rutrum consequat. Etiam neque. 
+            Integer pellentesque quam vel velit. Aliquam in lorem sit amet leo accumsan lacinia. 
+            Vivamus luctus egestas leo. Mauris metus. 
+            Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. 
+            Aenean id metus id velit ullamcorper pulvinar. Fusce aliquam vestibulum ipsum. 
+            In laoreet, magna id viverra tincidunt, sem odio bibendum justo, 
+            vel imperdiet sapien wisi sed libero. Nullam sit amet magna in magna gravida vehicula. 
+            Quisque porta. Nullam faucibus mi quis velit. Cras elementum. Aliquam ante. 
+            Pellentesque ipsum.
+        </p>
+        <h5>Second paragraphe</h5>
+        <p>Etiam commodo dui eget wisi. Morbi imperdiet, 
+            mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus. 
+            Nullam eget nisl. Nulla quis diam. Mauris elementum mauris vitae tortor. 
+            Nulla non arcu lacinia neque faucibus fringilla. Nulla turpis magna, cursus sit amet, 
+            suscipit a, interdum id, felis. Etiam dictum tincidunt diam. 
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac 
+            turpis egestas.
+        </p>
+    </div>
+
+    <!-- projects gallery -->
+    <hr>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for project in projects %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <a href="{% url 'project' project.id %}">
+                        <img class="d-block w-100" src="{{ project.image.url }}" alt="Image of {{ project.name }}">
+                    </a>
+                    <div class="carousel-caption bg-dark bg-opacity-50 rounded">
+                        <h5 class="text-light">{{ project.name }}</h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+        
+    <!-- printing systems preview -->
+    <div class="text-center">
+        <hr>
+        <h5>Systems Preview</h5>
+        <img class="img-fluid" src="https://3druck.com/wp-content/uploads/2023/11/dxr-serie-weber.jpg" alt="">
+        <!-- TODO -->
+    </div>
+
+    <!-- contact form -->
+    <div class="text-center">
+        <hr>
+        <h5>Contact Us</h5>
+        <form action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            {{ contact_form }}
+            <input class="btn btn-secondary" type="submit" value="Send">
+        </form>
+        <!-- TODO - form styling+functionality -->
+    </div>
 {% endblock %}
