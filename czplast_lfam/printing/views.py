@@ -1,19 +1,19 @@
 from django.shortcuts import render, get_object_or_404
-from django import forms
 
 from .models import Project
-
-class ContactForm(forms.Form):
-    email = forms.EmailField()
-    subject = forms.CharField()
-    body = forms.CharField(widget=forms.Textarea)
-    file = forms.FileField(required=False)
+from .forms import ContactForm
 
 # Create your views here.
 def index(request):
 
     if request.method == "post":
-        pass # TODO
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid:
+            email = contact_form.cleaned_data["email"]
+            subject = contact_form.cleaned_data["subject"]
+            body = contact_form.cleaned_data["body"]
+            file = contact_form.cleaned_data["file"]
+            # TODO: send and email to myself functionality
 
     return render(request, "printing/index.html", {
         "contact_form": ContactForm(),

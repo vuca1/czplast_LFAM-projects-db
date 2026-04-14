@@ -35,14 +35,14 @@
         </p>
     </div>
 
-    <!-- projects gallery -->
+    <!-- projects gallery/carousel -->
     <hr>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
+        <div class="carousel-inner mh-75">
             {% for project in projects %}
                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                     <a href="{% url 'project' project.id %}">
-                        <img class="d-block w-100" src="{{ project.image.url }}" alt="Image of {{ project.name }}">
+                        <img class="d-block w-100 mh-50" src="{{ project.image.url }}" alt="Image of {{ project.name }}">
                     </a>
                     <div class="carousel-caption bg-dark bg-opacity-50 rounded">
                         <h5 class="text-light">{{ project.name }}</h5>
@@ -71,11 +71,12 @@
     <div class="text-center">
         <hr>
         <h5>Contact Us</h5>
-        <form action="{% url 'index' %}" method="POST">
+        <form action="{% url 'index' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ contact_form }}
-            <input class="btn btn-secondary" type="submit" value="Send">
+            <div class="py-3">
+                <input class="btn btn-secondary" type="submit" value="Send">
+            </div>
         </form>
-        <!-- TODO - form styling+functionality -->
     </div>
 {% endblock %}

@@ -4,13 +4,23 @@
     <div class="container p-4 text-center">
         <h3>{{ project.name }}</h3>
         <h5>{{ project.customer }}</h5>
-        <div class="container p-3">
-            {{ project.description }}
-        </div>
         <div class="p-2">
             <img class="img-fluid rounded-3" src="{{ project.image.url }}" alt="Project {{ project.name }}">
         </div>
-        <p>{{ project.date }}</p>
+        <div class="container p-3">
+            {{ project.description }}
+        </div>
+        <div class="container p-3">
+            <div class="row">
+                <div class="col">
+                    Duration: {{ project.printing_time }}
+                </div>
+                <div class="col">
+                    Material: {{ project.material }}
+                </div>
+            </div>
+        </div>
+        <p class="text-muted">{{ project.date }}</p>
 
         <div class="container p-3">
             <a href="{% url 'index' %}" class="btn btn-secondary">Back Home</a>
