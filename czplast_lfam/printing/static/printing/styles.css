@@ -2,3 +2,8 @@
     background-color: rgb(84, 134, 64);
     color: white;
 }
+
+.carousel-item img {
+    max-height: 60vh;
+    object-fit: cover;
+}
